@@ -148,7 +148,15 @@ function clearLines() {
         }
     }
     if (linesCleared > 0) {
-        score += linesCleared * 100 * level; // Basic scoring
+        if (linesCleared === 1) {
+            score += 100 * level;
+        } else if (linesCleared === 2) {
+            score += 300 * level;
+        } else if (linesCleared === 3) {
+            score += 500 * level;
+        } else if (linesCleared >= 4) {
+            score += 800 * level;
+        }
         scoreDisplay.textContent = score;
         if (score >= level * 1000) { // Level up
             level++;
@@ -187,8 +195,14 @@ function rotateTetromino() {
 
     if (isValidMove(rotatedShape, currentX, currentY)) {
         currentTetromino.shape = rotatedShape;
-        drawBoard();
+    } else if (isValidMove(rotatedShape, currentX - 1, currentY)) {
+        currentTetromino.shape = rotatedShape;
+        currentX--;
+    } else if (isValidMove(rotatedShape, currentX + 1, currentY)) {
+        currentTetromino.shape = rotatedShape;
+        currentX++;
     }
+    drawBoard();
 }
 
 function moveLeft() {
@@ -215,7 +229,7 @@ function startGameLoop() {
 function endGame() {
     gameOver = true;
     clearInterval(gameInterval);
-    motivationalMessage.textContent = 'Game Over! Keep trying, you'll get better!';
+    motivationalMessage.textContent = `Game Over! Your score was ${score}. Keep trying, you'll get better!`;
     motivationalMessage.classList.remove('hidden');
     startButton.textContent = 'Play Again';
 }
