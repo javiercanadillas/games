@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-base-200 text-base-content flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="card bg-base-100 shadow-xl p-6 flex flex-col items-center">
+        <h1 class="text-4xl font-bold mb-4">Tetris</h1>
+        <div class="flex flex-col lg:flex-row gap-6">
+            <canvas id="gameCanvas" width="300" height="600" class="border-4 border-primary rounded-lg shadow-lg"></canvas>
+            <div class="flex flex-col gap-4">
+                <div class="card bg-neutral text-neutral-content p-4 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-semibold mb-2">Score: <span id="score">0</span></h2>
+                    <h2 class="text-2xl font-semibold">Level: <span id="level">1</span></h2>
+                </div>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button id="startButton" class="btn btn-primary">Start</button>
+                    <button id="stopButton" class="btn btn-error">Stop</button>
+                    <button id="pauseResumeButton" class="btn btn-warning">Pause/Resume</button>
+                    <select id="difficultySelect" class="select select-bordered w-full max-w-xs">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <p id="motivationalMessage" class="mt-4 text-lg font-medium hidden"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
